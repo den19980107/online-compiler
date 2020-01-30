@@ -1,0 +1,27 @@
+{
+  "name": "online-compiler",
+  "version": "1.0.0",
+  "description": "a rest api online compiler",
+  "main": "server.js",
+  "scripts": {
+    "start": "node dist/server.js",
+    "build": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/den19980107/online-compiler.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/den19980107/online-compiler/issues"
+  },
+  "homepage": "https://github.com/den19980107/online-compiler#readme",
+  "dependencies": {
+    "@types/node": "^13.5.2",
+    "body-parser": "^1.19.0",
+    "compile-run": "^2.3.2",
+    "express": "^4.17.1",
+    "typescript": "^3.7.5"
+  }
+}
