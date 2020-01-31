@@ -2,9 +2,15 @@ import React, { Component } from 'react';
 import ReactMarkdown from 'react-markdown'
 import marked from "marked";
 import './markdown.css'
+
+// import cmoponent
+import { Spin, Icon } from 'antd';
+const Spinner = <Icon type="loading" style={{ fontSize: 40 }} spin />;
+
 class Document extends Component {
    state = {
-      markdown: ""
+      markdown: "",
+      loading: true
    }
    componentDidMount() {
       const readmePath = require("./doc.md");
@@ -15,6 +21,7 @@ class Document extends Component {
          })
          .then(text => {
             this.setState({
+               loading: false,
                markdown: marked(text)
             })
          })
@@ -22,6 +29,7 @@ class Document extends Component {
    render() {
       return (
          <div className="container pt-4">
+            {this.state.loading && <div style={{ display: "flex", justifyContent: "center" }}>{Spinner}</div>}
             <ReactMarkdown
                source={this.state.markdown}
                escapeHtml={false}

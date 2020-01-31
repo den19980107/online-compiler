@@ -17,11 +17,14 @@ import compileRoute from './routes/compile'
 const app = express();
 const port = process.env.PORT || 5000;
 
+let isMongodbConnected = false
 // connect to mongodb
 mongoose.connect(keys.MONGODB.MONGODB_URI, (err) => {
   if (err) {
+    isMongodbConnected = false
     console.log(err)
   } else {
+    isMongodbConnected = true
     console.log("connected to mongo db");
   }
 });
@@ -66,7 +69,11 @@ app.use(express.static('client/build'))
 
 
 app.get('/*', function (req, res) {
-  res.sendFile(path.resolve(__dirname, '../client', 'build', 'index.html'));
+  if (isMongodbConnected) {
+    res.sendFile(path.resolve(__dirname, '../client', 'build', 'index.html'));
+  } else {
+    res.send("資料庫連線錯誤")
+  }
 })
 // connect react to nodejs express server
 app.listen(port, () => console.log(`Server is running on port ${port}!`));
