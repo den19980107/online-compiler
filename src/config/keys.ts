@@ -14,7 +14,7 @@ const SESSION = {
 
 
 const MONGODB = {
-  MONGODB_URI: 'mongodb://test:test123@ds315359.mlab.com:15359/online-compile'
+  MONGODB_URI: 'mongodb://localhost:27017/online-compile'
 };
 
 export = {

@@ -6,7 +6,9 @@
   "scripts": {
     "start": "node dist/index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "tsc"
+    "build": "tsc",
+    "production": "npm run build --prefix client && npm run build && NODE_ENV=production node dist/index.js",
+    "dev": "concurrently \"npm start\" \"npm start --prefix client\""
   },
   "author": "",
   "license": "ISC",
@@ -20,6 +22,7 @@
     "cookie-session": "^2.0.0-beta.3",
     "cors": "^2.8.5",
     "crypto": "^1.0.1",
+    "dotenv": "^8.2.0",
     "express": "^4.16.4",
     "express-session": "^1.15.6",
     "express-validator": "^5.3.1",
@@ -75,7 +78,7 @@
     "eslint": "^6.4.0",
     "jest": "^24.9.0",
     "node-sass": "^4.13.0",
-    "nodemon": "^1.19.2",
+    "nodemon": "^1.19.4",
     "shelljs": "^0.8.3",
     "supertest": "^4.0.2",
     "ts-jest": "^24.1.0",

@@ -8,6 +8,7 @@ import cookieParser from 'cookie-parser';
 import expressValidator from 'express-validator';
 import passport from 'passport';
 import path from 'path';
+import config from './config/default';
 
 // import routes
 import authRoutes from './routes/auth-routes';
@@ -65,15 +66,15 @@ app.use("/auth", authRoutes);
 app.use('/user', userRoutes);
 app.use('/compile', compileRoute);
 
-app.use(express.static('client/build'))
-
-
-app.get('/*', function (req, res) {
-  if (isMongodbConnected) {
-    res.sendFile(path.resolve(__dirname, '../client', 'build', 'index.html'));
-  } else {
-    res.send("資料庫連線錯誤")
-  }
-})
+if (config.mode == 'production') {
+  app.use(express.static('client/build'))
+  app.get('/*', function (req, res) {
+    if (isMongodbConnected) {
+      res.sendFile(path.resolve(__dirname, '../client', 'build', 'index.html'));
+    } else {
+      res.send("資料庫連線錯誤")
+    }
+  })
+}
 // connect react to nodejs express server
 app.listen(port, () => console.log(`Server is running on port ${port}!`));
