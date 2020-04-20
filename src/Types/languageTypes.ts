@@ -3,5 +3,6 @@ export enum languageEnum {
    cpp = "cpp",
    java = "java",
    javascript = "javascript",
-   python = "python"
+   python = "python",
+   python3="python3"
 }

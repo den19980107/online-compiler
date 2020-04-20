@@ -27,6 +27,7 @@ router.post('/', async function (req: Request, res: Response) {
          case languageEnum.javascript:
             result = await compiler.node.runSource(script, { stdin: stdin, timeout: 5000, compileTimeout: 5000 });
             break;
+         case languageEnum.python3:
          case languageEnum.python:
             result = await compiler.python.runSource(script, { stdin: stdin, timeout: 5000, compileTimeout: 5000 });
             break;
